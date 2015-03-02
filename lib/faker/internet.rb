@@ -99,6 +99,11 @@ module Faker
         container.map{ |n| n.to_s(16) }.join(':')
       end
 
+      def ip_v4_cidr(ip_addr = ip_v4_address, subnet = nil)
+        subnet ||= (8..32).to_a.sample
+        "#{ip_v4_address}/#{subnet}"
+      end
+
       def url(host = domain_name, path = "/#{user_name}")
         "http://#{host}#{path}"
       end

@@ -99,6 +99,14 @@ class TestFakerInternet < Test::Unit::TestCase
     end
   end
 
+  def test_ip_v4_cidr
+    assert_equal 1, @tester.ip_v4_cidr.count('/')
+
+    1000.times do
+      assert @tester.ip_v4_cidr.split('/').last.to_i <= 32
+    end
+  end
+
   def test_mac_address
     assert_equal 5, @tester.mac_address.count(':')
     assert_equal 5, @tester.mac_address("").count(':')
